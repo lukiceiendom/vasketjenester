@@ -6,16 +6,22 @@
   <title>Vasketjenester AS – Profesjonelt renhold</title>
   <meta name="description" content="Profesjonelle renholdstjenester for bedrift og privat. Over 25 års erfaring. Be om pris i dag." />
 
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --primary:#0b3a53;
+      --secondary:#1479a6;
       --light:#f4f6f8;
       --dark:#222;
     }
     * { box-sizing:border-box; }
     body {
-      margin:0; font-family: Arial, sans-serif; line-height:1.6; color:var(--dark);
+      margin:0; font-family:'Poppins', sans-serif; line-height:1.6; color:var(--dark);
     }
+    h1, h2 { font-family:'Playfair Display', serif; }
+
     header { position: relative; height: 80vh; }
     header video { width:100%; height:100%; object-fit:cover; }
     .overlay {
@@ -23,35 +29,46 @@
       display:flex; flex-direction:column; justify-content:center; align-items:center;
       text-align:center; color:white; padding:20px;
     }
+
     nav {
-      background:var(--primary); padding:12px; position:sticky; top:0; z-index:10;
+      background:var(--primary); padding:14px; position:sticky; top:0; z-index:10;
       display:flex; justify-content:center; flex-wrap:wrap;
     }
     nav a {
-      color:white; margin:5px 15px; text-decoration:none; font-weight:bold;
+      color:white; margin:5px 18px; text-decoration:none; font-weight:600;
     }
     nav a:hover { text-decoration:underline; }
-    section { padding:60px 20px; max-width:1100px; margin:auto; }
+
+    section { padding:70px 20px; max-width:1200px; margin:auto; }
     section.alt { background:var(--light); }
-    h1, h2 { color:var(--primary); }
-    h1 { color:white; font-size:2.5rem; }
-    ul { columns:2; padding-left:20px; }
-    .card {
-      background:white; padding:25px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,.08);
-    }
-    .form-box input, .form-box textarea {
-      width:100%; padding:10px; margin-bottom:10px;
-    }
-    button {
-      padding:12px 20px; background:var(--primary); color:white;
-      border:none; border-radius:4px; cursor:pointer;
-    }
-    button:hover { opacity:.9; }
-    footer {
-      background:var(--primary); color:white; text-align:center; padding:30px;
-    }
+
     .lang { position:absolute; top:20px; right:20px; }
     .lang button { margin-left:5px; }
+
+    button {
+      padding:12px 22px; background:var(--secondary); color:white;
+      border:none; border-radius:25px; cursor:pointer; font-weight:600;
+    }
+    button:hover { opacity:.9; }
+
+    .grid {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;
+    }
+    .card {
+      background:white; padding:25px; border-radius:15px;
+      box-shadow:0 10px 25px rgba(0,0,0,.08);
+      transition:transform .2s;
+    }
+    .card:hover { transform:translateY(-5px); }
+
+    .form-box input, .form-box textarea {
+      width:100%; padding:12px; margin-bottom:12px;
+      border-radius:6px; border:1px solid #ccc;
+    }
+
+    footer {
+      background:var(--primary); color:white; text-align:center; padding:35px;
+    }
   </style>
 </head>
 <body>
@@ -65,17 +82,16 @@
       <button onclick="setLang('no')">NO</button>
       <button onclick="setLang('en')">EN</button>
     </div>
-    <h1>Vasketjenester AS</h1>
-    <p id="hero-text">Profesjonelle renholdstjenester for bedrift og privat</p>
-    <a href="#pris"><button>Be om pris</button></a>
+    <p id="hero-text" style="font-size:1.4rem; max-width:700px;">Profesjonelle renholdstjenester for bedrift og privat</p>
+    <a href="#pris"><button id="cta-btn">Be om pris</button></a>
   </div>
 </header>
 
 <nav>
-  <a href="#bedrift">Bedriftskunde</a>
-  <a href="#privat">Privatkunde</a>
-  <a href="#om">Om oss</a>
-  <a href="#kontakt">Kontakt oss</a>
+  <a href="#bedrift" id="nav-bedrift">Bedriftskunde</a>
+  <a href="#privat" id="nav-privat">Privatkunde</a>
+  <a href="#om" id="nav-om">Om oss</a>
+  <a href="#kontakt" id="nav-kontakt">Kontakt oss</a>
 </nav>
 
 <section id="pris" class="alt">
@@ -85,43 +101,28 @@
       <input type="text" name="Navn" placeholder="Navn" required>
       <input type="email" name="E-post" placeholder="E-post" required>
       <textarea name="Melding" rows="5" placeholder="Fortell oss hva du ønsker pris på"></textarea>
-      <button type="submit">Send forespørsel</button>
+      <button type="submit" id="send-btn">Send forespørsel</button>
     </form>
   </div>
 </section>
 
 <section id="bedrift">
-  <h2>Bedriftskunde</h2>
-  <p>Skreddersydde renholdsløsninger for næringslivet.</p>
-  <ul>
-    <li>Trappevask</li><li>Kontorvask</li><li>Butikker</li><li>Barnehager</li>
-    <li>Treningssenter</li><li>Byggvask</li><li>Lager</li><li>Brakker</li>
-  </ul>
+  <h2 id="bedrift-title">Renhold for bedrifter</h2>
+  <div class="grid" id="bedrift-services"></div>
 </section>
 
 <section id="privat" class="alt">
-  <h2>Privatkunde</h2>
-  <p>Trygt, grundig og forutsigbart renhold hjemme hos deg.</p>
-  <ul>
-    <li>Ukentlig renhold hjemme</li><li>Annenhver uke renhold hjemme</li>
-    <li>Månedlig renhold hjemme</li><li>Flyttevask</li>
-    <li>Hovedrengjøring</li><li>Vindusvask</li>
-  </ul>
+  <h2 id="privat-title">Renhold for privatkunder</h2>
+  <div class="grid" id="privat-services"></div>
 </section>
 
 <section id="om">
-  <h2>Om oss</h2>
-  <p id="about-text">
-    Vi har over 25 års erfaring fra bransjen. Dette gjør at vi har omfattende erfaring og vet å bruke faglig kunnskap til din fordel.
-    Våre rutiner for vaskemetoder, kvalitetskontroll og kostnadseffektive løsninger er utviklet gjennom mange år.
-    <br><br>
-    Hos Vasketjenester AS er vi opptatt av langsiktige kundeforhold og jobber målrettet for å skape trygghet og forutsigbarhet.
-    Vårt mål er enkelt: Å være en samarbeidspartner du kan stole på – hver gang.
-  </p>
+  <h2 id="about-title">Om oss</h2>
+  <p id="about-text"></p>
 </section>
 
 <section id="kontakt" class="alt">
-  <h2>Kontakt oss</h2>
+  <h2 id="contact-title">Kontakt oss</h2>
   <p><strong>Daglig leder:</strong> Biljana Lukic</p>
   <p><strong>Telefon:</strong> 415 51 557</p>
 </section>
@@ -131,24 +132,57 @@
 </footer>
 
 <script>
-  const translations = {
-    en: {
-      hero: "Professional cleaning services for businesses and private customers",
-      price: "Price inquiry",
-      about: "We have over 25 years of experience in the cleaning industry. Our routines and quality control are built through years of experience. Our goal is simple: to be a partner you can trust – every time."
-    },
-    no: {
-      hero: "Profesjonelle renholdstjenester for bedrift og privat",
-      price: "Prisforespørsel",
-      about: document.getElementById('about-text').innerText
-    }
-  };
-
-  function setLang(lang) {
-    document.getElementById('hero-text').innerText = translations[lang].hero;
-    document.getElementById('price-title').innerText = translations[lang].price;
-    document.getElementById('about-text').innerText = translations[lang].about;
+const data = {
+  no: {
+    hero:"Profesjonelle renholdstjenester for bedrift og privat",
+    cta:"Be om pris",
+    price:"Prisforespørsel",
+    nav:{bedrift:"Bedriftskunde",privat:"Privatkunde",om:"Om oss",kontakt:"Kontakt oss"},
+    bedriftTitle:"Renhold for bedrifter",
+    privatTitle:"Renhold for privatkunder",
+    bedrift:["Trappevask","Kontorvask","Butikker","Barnehager","Treningssenter","Byggvask","Lager","Brakker"],
+    privat:["Ukentlig renhold hjemme","Annenhver uke renhold hjemme","Månedlig renhold hjemme","Flyttevask","Hovedrengjøring","Vindusvask"],
+    about:"Vi har over 25 års erfaring fra bransjen. Våre rutiner for vaskemetoder, kvalitetskontroll og kostnadseffektive løsninger er utviklet gjennom mange år. Hos Vasketjenester AS er vi opptatt av langsiktige kundeforhold og jobber målrettet for å skape trygghet og forutsigbarhet. Vårt mål er enkelt: Å være en samarbeidspartner du kan stole på – hver gang.",
+    contact:"Kontakt oss",
+    send:"Send forespørsel"
+  },
+  en: {
+    hero:"Professional cleaning services for businesses and private customers",
+    cta:"Request a quote",
+    price:"Price inquiry",
+    nav:{bedrift:"Business",privat:"Private",om:"About us",kontakt:"Contact"},
+    bedriftTitle:"Cleaning for businesses",
+    privatTitle:"Cleaning for private customers",
+    bedrift:["Staircase cleaning","Office cleaning","Retail stores","Kindergartens","Gyms","Construction cleaning","Warehouses","Site cabins"],
+    privat:["Weekly home cleaning","Bi-weekly home cleaning","Monthly home cleaning","Move-out cleaning","Deep cleaning","Window cleaning"],
+    about:"We have over 25 years of experience in the cleaning industry. Our routines and quality control systems are built through years of professional work. Our goal is simple: to be a partner you can trust – every time.",
+    contact:"Contact us",
+    send:"Send inquiry"
   }
+};
+
+function renderServices(lang){
+  document.getElementById('bedrift-services').innerHTML = data[lang].bedrift.map(s=>`<div class="card">${s}</div>`).join('');
+  document.getElementById('privat-services').innerHTML = data[lang].privat.map(s=>`<div class="card">${s}</div>`).join('');
+}
+
+function setLang(lang){
+  document.getElementById('hero-text').innerText=data[lang].hero;
+  document.getElementById('cta-btn').innerText=data[lang].cta;
+  document.getElementById('price-title').innerText=data[lang].price;
+  document.getElementById('bedrift-title').innerText=data[lang].bedriftTitle;
+  document.getElementById('privat-title').innerText=data[lang].privatTitle;
+  document.getElementById('about-text').innerText=data[lang].about;
+  document.getElementById('contact-title').innerText=data[lang].contact;
+  document.getElementById('send-btn').innerText=data[lang].send;
+  document.getElementById('nav-bedrift').innerText=data[lang].nav.bedrift;
+  document.getElementById('nav-privat').innerText=data[lang].nav.privat;
+  document.getElementById('nav-om').innerText=data[lang].nav.om;
+  document.getElementById('nav-kontakt').innerText=data[lang].nav.kontakt;
+  renderServices(lang);
+}
+
+setLang('no');
 </script>
 
 </body>
